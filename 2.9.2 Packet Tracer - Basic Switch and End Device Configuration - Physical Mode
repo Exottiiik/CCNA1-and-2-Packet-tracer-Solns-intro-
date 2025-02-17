@@ -1,0 +1,119 @@
+*************2.9.2-packet-tracer---basic-switch-and-end-device-configuration*************
+
+
+**Computer and Switch Placement and Wiring**  
+==============================
+
+1. **Place the computers and switches:**
+   - Click on the computers on the shelf to move them onto the table.
+   - Once placed, also place switch number 1 and switch number 2 into the rack located on the left side.
+
+2. **Organize where there's space:**
+   - Put everything where there is available space.
+
+3. **Connect the devices:**
+   - Use straight cables (light green) to connect the computers to the switches. Be sure to connect them to the correct ports (ports 6 and 18).
+   - Use console cables (blue, found on the pegboard) to connect the computers to the switches as follows: 
+     - PC A -> S1 
+     - PC B -> S2.
+   - To connect to the switch, right-click on it and inspect the back of the switch to access the console port. Without this, the console port will not be accessible. The connection to the machine uses the RS232 port.
+
+4. **Connect the two switches:**
+   - Use a crossover cable (orange) to connect the two switches. Plug this into the F 0/1 port on each switch.
+
+5. **Power on the computers:**
+   - Once all connections are made, turn on the computers using the power button on their front panels.
+
+---
+
+**Configuring Computer A**  
+==============================
+
+1. **Access IP Configuration:**
+   - Click on the computer and go to "Desktop," then click on "IP Configuration."
+
+2. **Set IPv4 Address:**
+   - In the "IPv4 Address" field, enter the requested address (192.168.1.10).
+   - If the subnet mask is not automatically set, manually enter 255.255.255.0.
+
+---
+
+**Configuring Computer B**  
+==============================
+
+1. **Access IP Configuration:**
+   - Click on the computer and go to "Desktop," then click on "IP Configuration."
+
+2. **Set IPv4 Address:**
+   - In the "IPv4 Address" field, enter the requested address (192.168.1.11).
+   - If the subnet mask is not automatically set, manually enter 255.255.255.0.
+
+3. **Test Connectivity:**
+   - Once both configurations are completed, open the command prompt and test the connectivity by pinging the address (192.168.1.x) from each side.
+
+---
+
+**Configuring Switch 1**  
+==============================
+
+1. **Access the Switch:**
+   - From Computer A -> Desktop -> Terminal.
+
+2. **If the wiring was done correctly, you should reach the switch interface.**
+
+3. **Run the following commands:**
+   - `enable`
+   - `conf t`
+   - `hostname S1`
+   - `banner motd #Authorized access only#`
+   - `line console 0`
+   - `password cisco`
+   - `login`
+   - `enable secret class`
+   - `interface vlan 1`
+   - `no shutdown`
+   - `ip address 192.168.1.1 255.255.255.0`
+   - `exit`
+   - `exit`
+   - `copy running-config startup-config`
+   - `show run`
+   - `show interface`
+   - `show version`
+
+---
+
+**Configuring Switch 2**  
+==============================
+
+1. **Run the following commands:**
+   - `enable`
+   - `conf t`
+   - `hostname S2`
+   - `banner motd #Authorized access only#`
+   - `line console 0`
+   - `password cisco`
+   - `login`
+   - `enable secret class`
+   - `interface vlan 1`
+   - `no shutdown`
+   - `ip address 192.168.1.2 255.255.255.0`
+   - `exit`
+   - `exit`
+   - `copy running-config startup-config`
+   - `show run`
+   - `show interface`
+   - `show version`
+
+---
+
+**Connectivity Testing**  
+==============================
+
+1. **Test connectivity via CLI:**
+   - From the CLI, to configure S1 or S2, use the `ping` command to test the connection to the other devices:
+     - `ping 192.168.1.1` (or 192.168.1.2)
+     - `ping 192.168.1.10` (or 192.168.1.11)
+
+---
+
+If all tests and configurations pass, your completion rate should be 100%. However, be aware that there might have been an error in the written instructions. Also, configurations may sometimes differ.
